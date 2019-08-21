@@ -1,6 +1,6 @@
 <?php echo '<?xml version="1.0"?>'?>
 
-<pbcoreDescriptionDocument xmlns="http://pbcore.org/PBCore/PBCoreNamespace" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://pbcore.org/PBCore/PBCoreNamespace https://raw.githubusercontent.com/WGBH/PBCore_2.1/master/pbcore-2.1.xsd">
+<pbcoreDescriptionDocument xmlns="http://pbcore.org/PBCore/PBCoreNamespace" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://pbcore.org/PBCore/PBCoreNamespace http://pbcore.org/xsd/pbcore-2.1.xsd">
 <?php
 $elements = array(
     'pbcoreAssetType' => 'Asset Type',
@@ -42,7 +42,7 @@ foreach ($elements as $xmlElement => $element) {
             foreach ($texts as $xmlSubElement => $text) {
                 echo "<$xmlSubElement>";
                 echo xml_escape($text);
-                echo "</$xmlElement>\n";
+                echo "</$xmlSubElement>\n";
             }
             echo "</$xmlElement>\n";
         }

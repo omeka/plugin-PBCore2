@@ -228,8 +228,20 @@ class PBCore2Plugin extends Omeka_Plugin_AbstractPlugin
                 'description' => 'Any supplementary information about a track or the metadata used to describe it',
             ),
             array(
+                'name' => 'Relation Type',
+                'description' => '',
+            ),
+            array(
+                'name' => 'Relation Identifier',
+                'description' => '',
+            ),
+            array(
                 'name' => 'Rights Summary',
                 'description' => 'Information about copyrights and property rights held in and over an instantiation',
+            ),
+            array(
+                'name' => 'Rights Link',
+                'description' => 'A URI pointing to a declaration of rights',
             ),
             array(
                 'name' => 'Annotation',
@@ -248,6 +260,8 @@ class PBCore2Plugin extends Omeka_Plugin_AbstractPlugin
     public function filterActionContexts($contexts, $args)
     {
         if ($args['controller'] instanceof ItemsController) {
+            $contexts['show'][] = 'pbcore-xml';
+        } elseif ($args['controller'] instanceof FilesController) {
             $contexts['show'][] = 'pbcore-xml';
         }
         return $contexts;
