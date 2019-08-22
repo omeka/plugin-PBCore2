@@ -3,7 +3,7 @@ class PBCore2Plugin extends Omeka_Plugin_AbstractPlugin
 {
     protected $_hooks = array('install', 'uninstall');
 
-    protected $_filters = array('action_contexts', 'response_contexts');
+    protected $_filters = array('action_contexts', 'response_contexts', 'admin_items_form_tabs', 'admin_files_form_tabs');
 
     public function hookInstall()
     {
@@ -276,4 +276,15 @@ class PBCore2Plugin extends Omeka_Plugin_AbstractPlugin
         return $contexts;
     }
 
+    public function filterAdminItemsFormTabs($tabs)
+    {
+        $tabs = array('PBCore' => $tabs['PBCore']) + $tabs;
+        return $tabs;
+    }
+
+    public function filterAdminFilesFormTabs($tabs)
+    {
+        $tabs = array('PBCore Instantiation' => $tabs['PBCore Instantiation']) + $tabs;
+        return $tabs;
+    }
 }
