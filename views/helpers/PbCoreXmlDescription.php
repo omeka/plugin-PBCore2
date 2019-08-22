@@ -22,6 +22,12 @@ class PBCore2_View_Helper_PbCoreXmlDescription extends PBCore2_View_Helper_Abstr
 
     public function pbCoreXmlDescription(Item $item)
     {
-        return $this->_elementsToXml($item, 'PBCore', $this->_elements);
+        $xml = $this->_elementsToXml($item, 'PBCore', $this->_elements);
+        foreach ($item->Files as $file) {
+            $xml .= "<pbcoreInstantiation>\n";
+            $xml .= $this->view->pbCoreXmlInstantiation($file);
+            $xml .= "</pbcoreInstantiation>\n";
+        }
+        return $xml;
     }
 }

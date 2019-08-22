@@ -261,6 +261,7 @@ class PBCore2Plugin extends Omeka_Plugin_AbstractPlugin
     {
         if ($args['controller'] instanceof ItemsController) {
             $contexts['show'][] = 'pbcore-xml';
+            $contexts['browse'][] = 'pbcore-xml';
         } elseif ($args['controller'] instanceof FilesController) {
             $contexts['show'][] = 'pbcore-xml';
         }
