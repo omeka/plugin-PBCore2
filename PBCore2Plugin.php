@@ -7,165 +7,165 @@ class PBCore2Plugin extends Omeka_Plugin_AbstractPlugin
 
     public function hookInstall()
     {
-		$elements = array(
-			array(
-				'name' => 'Asset Type',
-				'description' => 'A broad definition of the type of intellectual content being described',
-			),
-			array(
-				'name' => 'Asset Date',
-				'description' => 'A date associated with the intellectual content',
-			),
-			array(
-				'name' => 'Identifier',
-				'description' => 'An identifier than can apply to the asset',
-			),
-			array(
-				'name' => 'Title',
-				'description' => 'A name or label relevant to the asset',
-			),
-			array(
-				'name' => 'Subject',
-				'description' => 'A topic heading or keyword that portrays the intellectual content of the asset',
-			),
-			array(
-				'name' => 'Description',
-				'description' => 'General notes, an abstract, or a summary about the intellectual content of the asset',
-			),
-			array(
-				'name' => 'Genre',
-				'description' => 'A categorical description of the asset informed by the topical nature or a particular style or form of the content',
-			),
-			array(
-				'name' => 'Relation Type',
-			),
-			array(
-				'name' => 'Relation Identifier',
-			),
-			array(
-				'name' => 'Coverage',
-			),
-			array(
-				'name' => 'Coverage Type',
-			),
-			array(
-				'name' => 'Audience Level',
-				'description' => 'A type of audience, viewer, or listener for whom the media item is primarily designed or educationally useful',
-			),
-			array(
-				'name' => 'Audience Rating',
-				'description' => 'The type of users for whom the intellectual content of a media item is intended or judged appropriate',
-			), 
-			array(
-				'name' => 'Creator',
-				'description' => 'A primary person or organization responsible for creating the asset',
-			),
-			array(
-				'name' => 'Creator Role',
-				'description' => 'The role played by the person or organization identified in the corresponding Creator element',
-			),
-			array(
-				'name' => 'Contributor',
-				'description' => 'A person or organization that has made substantial creative contributions to the asset',
-			),
-			array(
-				'name' => 'Contributor Role',
-				'description' => 'The role played by the person or organization identified in the corresponding Contributor element',
-			),
-			array(
-				'name' => 'Publisher',
-				'description' => 'A person or organization primarily responsible for distributing or making the asset available to others',
-			),
-			array(
-				'name' => 'Publisher Role',
-				'description' => 'The role played by the specific publisher or publishing entity identified in the corresponding Publisher element',
-			),
-			array(
-				'name' => 'Rights Summary',
-				'description' => 'A general free-text element to identify information about copyrights and property rights held in and over an asset',
-			),
-			array(
-				'name' => 'Rights Link',
-				'description' => 'A URI pointing to a declaration of rights',
-			),
-			array(
-				'name' => 'Annotation',
-				'description' => 'Any supplementary information about the metadata used to describe the PBCore record'
-			),
-		);
+        $elements = array(
+            array(
+                'name' => 'Asset Type',
+                'description' => 'A broad definition of the type of intellectual content being described',
+            ),
+            array(
+                'name' => 'Asset Date',
+                'description' => 'A date associated with the intellectual content',
+            ),
+            array(
+                'name' => 'Identifier',
+                'description' => 'An identifier than can apply to the asset',
+            ),
+            array(
+                'name' => 'Title',
+                'description' => 'A name or label relevant to the asset',
+            ),
+            array(
+                'name' => 'Subject',
+                'description' => 'A topic heading or keyword that portrays the intellectual content of the asset',
+            ),
+            array(
+                'name' => 'Description',
+                'description' => 'General notes, an abstract, or a summary about the intellectual content of the asset',
+            ),
+            array(
+                'name' => 'Genre',
+                'description' => 'A categorical description of the asset informed by the topical nature or a particular style or form of the content',
+            ),
+            array(
+                'name' => 'Relation Type',
+            ),
+            array(
+                'name' => 'Relation Identifier',
+            ),
+            array(
+                'name' => 'Coverage',
+            ),
+            array(
+                'name' => 'Coverage Type',
+            ),
+            array(
+                'name' => 'Audience Level',
+                'description' => 'A type of audience, viewer, or listener for whom the media item is primarily designed or educationally useful',
+            ),
+            array(
+                'name' => 'Audience Rating',
+                'description' => 'The type of users for whom the intellectual content of a media item is intended or judged appropriate',
+            ), 
+            array(
+                'name' => 'Creator',
+                'description' => 'A primary person or organization responsible for creating the asset',
+            ),
+            array(
+                'name' => 'Creator Role',
+                'description' => 'The role played by the person or organization identified in the corresponding Creator element',
+            ),
+            array(
+                'name' => 'Contributor',
+                'description' => 'A person or organization that has made substantial creative contributions to the asset',
+            ),
+            array(
+                'name' => 'Contributor Role',
+                'description' => 'The role played by the person or organization identified in the corresponding Contributor element',
+            ),
+            array(
+                'name' => 'Publisher',
+                'description' => 'A person or organization primarily responsible for distributing or making the asset available to others',
+            ),
+            array(
+                'name' => 'Publisher Role',
+                'description' => 'The role played by the specific publisher or publishing entity identified in the corresponding Publisher element',
+            ),
+            array(
+                'name' => 'Rights Summary',
+                'description' => 'A general free-text element to identify information about copyrights and property rights held in and over an asset',
+            ),
+            array(
+                'name' => 'Rights Link',
+                'description' => 'A URI pointing to a declaration of rights',
+            ),
+            array(
+                'name' => 'Annotation',
+                'description' => 'Any supplementary information about the metadata used to describe the PBCore record'
+            ),
+        );
 
-		$fileElements = array(
-			array(
-				'name' => 'Identifier',
-				'description' => 'An unambiguous reference or identifier for a particular instantiation of an asset',
-			),
-			array(
-				'name' => 'Date',
-				'description' => 'A date associated with an instantiation',
-			),
-			array(
-				'name' => 'Dimensions',
-				'description' => 'Either the dimensions of a physical instantiation or the high-level visual dimensions of a digital instantiation',
-			),
-			array(
-				'name' => 'Physical Format',
-				'description' => 'The format of a particular instantiation as it exists in a physical form that occupies physical space',
-			),
-			array(
-				'name' => 'Digital Format',
-				'description' => 'The format of a particular instantiation as it exists as a digital file on a server, hard drive, or other digital storage medium',
-			),
-			array(
-				'name' => 'Standard',
-				'description' => 'The broadcast standard of the video signal or audio encoding (if a physical item), or the container format of the digital file (if a digital item)',
-			),
-			array(
-				'name' => 'Location',
-				'description' => 'Information about a specific location for an instantiation',
-			),
-			array(
-				'name' => 'Media Type',
-				'description' => 'The general, high level nature of the content of an instantiation',
-			),
-			array(
-				'name' => 'Generation',
-				'description' => 'The use type and provenance of the instantiation',
-			),
-			array(
-				'name' => 'File Size',
-				'description' => 'The file size of a digital instantiation',
-			),
-			array(
-				'name' => 'Time Start',
-				'description' => 'The point at which playback begins for a time-based instantiation',
-			),
-			array(
-				'name' => 'Duration',
-				'description' => 'A timestamp for the overall length or duration of a time-based media item',
-			),
-			array(
-				'name' => 'Data Rate',
-				'description' => 'The amount of data in a digital media that is encoded, delivered or distributed, for every second of time',
-			),
-			array(
-				'name' => 'Colors',
-				'description' => 'The overall color, grayscale, or black and white nature of the presentation of an instantiation',
-			),
-			array(
-				'name' => 'Tracks',
-				'description' => 'The number and type of tracks that are found in a media item',
-			),
-			array(
-				'name' => 'Channel Configuration',
-				'description' => 'The arrangement or configuration of specific channels or layers of information within an instantiation’s tracks',
-			),
-			array(
-				'name' => 'Language',
-				'description' => 'The primary language of the tracks’ audio or text'
-			),
-			array(
-				'name' => 'Alternative Modes',
-				'description' => 'Identifies equivalent alternatives to the primary visual, sound or textual information that exists in an instantiation',
+        $fileElements = array(
+            array(
+                'name' => 'Identifier',
+                'description' => 'An unambiguous reference or identifier for a particular instantiation of an asset',
+            ),
+            array(
+                'name' => 'Date',
+                'description' => 'A date associated with an instantiation',
+            ),
+            array(
+                'name' => 'Dimensions',
+                'description' => 'Either the dimensions of a physical instantiation or the high-level visual dimensions of a digital instantiation',
+            ),
+            array(
+                'name' => 'Physical Format',
+                'description' => 'The format of a particular instantiation as it exists in a physical form that occupies physical space',
+            ),
+            array(
+                'name' => 'Digital Format',
+                'description' => 'The format of a particular instantiation as it exists as a digital file on a server, hard drive, or other digital storage medium',
+            ),
+            array(
+                'name' => 'Standard',
+                'description' => 'The broadcast standard of the video signal or audio encoding (if a physical item), or the container format of the digital file (if a digital item)',
+            ),
+            array(
+                'name' => 'Location',
+                'description' => 'Information about a specific location for an instantiation',
+            ),
+            array(
+                'name' => 'Media Type',
+                'description' => 'The general, high level nature of the content of an instantiation',
+            ),
+            array(
+                'name' => 'Generation',
+                'description' => 'The use type and provenance of the instantiation',
+            ),
+            array(
+                'name' => 'File Size',
+                'description' => 'The file size of a digital instantiation',
+            ),
+            array(
+                'name' => 'Time Start',
+                'description' => 'The point at which playback begins for a time-based instantiation',
+            ),
+            array(
+                'name' => 'Duration',
+                'description' => 'A timestamp for the overall length or duration of a time-based media item',
+            ),
+            array(
+                'name' => 'Data Rate',
+                'description' => 'The amount of data in a digital media that is encoded, delivered or distributed, for every second of time',
+            ),
+            array(
+                'name' => 'Colors',
+                'description' => 'The overall color, grayscale, or black and white nature of the presentation of an instantiation',
+            ),
+            array(
+                'name' => 'Tracks',
+                'description' => 'The number and type of tracks that are found in a media item',
+            ),
+            array(
+                'name' => 'Channel Configuration',
+                'description' => 'The arrangement or configuration of specific channels or layers of information within an instantiation’s tracks',
+            ),
+            array(
+                'name' => 'Language',
+                'description' => 'The primary language of the tracks’ audio or text'
+            ),
+            array(
+                'name' => 'Alternative Modes',
+                'description' => 'Identifies equivalent alternatives to the primary visual, sound or textual information that exists in an instantiation',
             ),
             array(
                 'name' => 'Essence Track Type',
