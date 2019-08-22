@@ -48,5 +48,10 @@ foreach ($elements as $xmlElement => $element) {
         }
     }
 }
+foreach ($item->Files as $file) {
+    echo "<pbcoreInstantiation>\n";
+    echo $this->pbCoreXmlInstantiation($file);
+    echo "</pbcoreInstantiation>\n";
+}
 ?>
 </pbcoreDescriptionDocument>
