@@ -1,5 +1,5 @@
 <?php
-class PBCore2_View_Helper_PbCoreXmlInstantiation extends Zend_View_Helper_Abstract
+class PBCore2_View_Helper_PbCoreXmlInstantiation extends PBCore2_View_Helper_AbstractPbCoreHelper
 {
     private $_elements = array(
         'instantiationIdentifier' => 'Identifier',
@@ -44,30 +44,6 @@ class PBCore2_View_Helper_PbCoreXmlInstantiation extends Zend_View_Helper_Abstra
 
     public function pbCoreXmlInstantiation(File $file)
     {
-        $xml = '';
-        foreach ($this->_elements as $xmlElement => $element) {
-            if (is_string($element)) {
-                $metadata = metadata($file, array('PBCore Instantiation', $element), array('all' => true, 'no_escape' => true));
-                foreach ($metadata as $text) {
-                    $xml .= "<$xmlElement>" . xml_escape($text) . "</$xmlElement>\n";
-                }
-            } else {
-                $metadata = array();
-                foreach ($element as $xmlSubElement => $subElement) {
-                    $subMetadata = metadata($file, array('PBCore Instantiation', $subElement), array('all' => true, 'no_escape' => true));
-                    foreach ($subMetadata as $index => $text) {
-                        $metadata[$index][$xmlSubElement] = $text;
-                    }
-                }
-                foreach ($metadata as $texts) {
-                    $xml .= "<$xmlElement>\n";
-                    foreach ($texts as $xmlSubElement => $text) {
-                        $xml .= "<$xmlSubElement>" . xml_escape($text) . "</$xmlSubElement>\n";
-                    }
-                    $xml .= "</$xmlElement>\n";
-                }
-            }
-        }
-        return $xml;
+        return $this->_elementsToXml($file, 'PBCore Instantiation', $this->_elements);
     }
 }
