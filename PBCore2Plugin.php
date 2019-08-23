@@ -14,6 +14,16 @@ class PBCore2Plugin extends Omeka_Plugin_AbstractPlugin
         'Rights Summary', 'Rights Link',
     );
 
+    protected $_doubledFileElements = array(
+        'Essence Track Type', 'Essence Track Identifier', 'Essence Track Standard', 'Essence Track Encoding',
+        'Essence Track Data Rate', 'Essence Track Frame Rate', 'Essence Track Playback Speed',
+        'Essence Track Sampling Rate', 'Essence Track Bit Depth', 'Essence Track Frame Size',
+        'Essence Track Aspect Ratio', 'Essence Track Time Start', 'Essence Track Duration',
+        'Essence Track Language', 'Essence Track Annotation',
+        'Relation Type', 'Relation Identifier',
+        'Rights Summary', 'Rights Link',
+    );
+
     public function hookInstall()
     {
         $elements = array(
@@ -288,25 +298,32 @@ class PBCore2Plugin extends Omeka_Plugin_AbstractPlugin
 
     public function filterAdminItemsFormTabs($tabs)
     {
-        $elementTable = get_db()->getTable('Element');
-        $elementIds = array();
-
-        foreach ($this->_doubledItemElements as $elementName) {
-            $element = $elementTable->findByElementSetNameAndElementName('PBCore', $elementName);
-            $elementIds[] = $element->id;
-        }
-        $elementIdsJson = json_encode($elementIds);
-
         $pbCoreTab = $tabs['PBCore'];
-        $pbCoreTab .= js_tag('pbcore');
-        $pbCoreTab .= '<script type="text/javascript">pbcoreEnsureElements(' . $elementIdsJson . ');</script>';
+        $pbCoreTab .= $this->_getFormJs('PBCore', $this->_doubledItemElements);
         $tabs = array('PBCore' => $pbCoreTab) + $tabs;
         return $tabs;
     }
 
     public function filterAdminFilesFormTabs($tabs)
     {
-        $tabs = array('PBCore Instantiation' => $tabs['PBCore Instantiation']) + $tabs;
+        $pbCoreTab = $tabs['PBCore Instantiation'];
+        $pbCoreTab .= $this->_getFormJs('PBCore Instantiation', $this->_doubledFileElements);
+        $tabs = array('PBCore Instantiation' => $pbCoreTab) + $tabs;
         return $tabs;
+    }
+
+    private function _getFormJs($elementSet, $elements)
+    {
+        $elementTable = get_db()->getTable('Element');
+        $elementIds = array();
+
+        foreach ($elements as $elementName) {
+            $element = $elementTable->findByElementSetNameAndElementName($elementSet, $elementName);
+            $elementIds[] = $element->id;
+        }
+        $elementIdsJson = json_encode($elementIds);
+
+        return js_tag('pbcore')
+            . '<script type="text/javascript">pbcoreEnsureElements(' . $elementIdsJson . ');</script>';
     }
 }
