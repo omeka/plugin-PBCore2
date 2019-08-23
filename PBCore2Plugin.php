@@ -5,6 +5,15 @@ class PBCore2Plugin extends Omeka_Plugin_AbstractPlugin
 
     protected $_filters = array('action_contexts', 'response_contexts', 'admin_items_form_tabs', 'admin_files_form_tabs');
 
+    protected $_doubledItemElements = array(
+        'Relation Type', 'Relation Identifier',
+        'Coverage', 'Coverage Type',
+        'Creator', 'Creator Role',
+        'Contributor', 'Contributor Role',
+        'Publisher', 'Publisher Role',
+        'Rights Summary', 'Rights Link',
+    );
+
     public function hookInstall()
     {
         $elements = array(
@@ -279,7 +288,19 @@ class PBCore2Plugin extends Omeka_Plugin_AbstractPlugin
 
     public function filterAdminItemsFormTabs($tabs)
     {
-        $tabs = array('PBCore' => $tabs['PBCore']) + $tabs;
+        $elementTable = get_db()->getTable('Element');
+        $elementIds = array();
+
+        foreach ($this->_doubledItemElements as $elementName) {
+            $element = $elementTable->findByElementSetNameAndElementName('PBCore', $elementName);
+            $elementIds[] = $element->id;
+        }
+        $elementIdsJson = json_encode($elementIds);
+
+        $pbCoreTab = $tabs['PBCore'];
+        $pbCoreTab .= js_tag('pbcore');
+        $pbCoreTab .= '<script type="text/javascript">pbcoreEnsureElements(' . $elementIdsJson . ');</script>';
+        $tabs = array('PBCore' => $pbCoreTab) + $tabs;
         return $tabs;
     }
 
