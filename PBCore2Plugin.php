@@ -57,15 +57,19 @@ class PBCore2Plugin extends Omeka_Plugin_AbstractPlugin
             ),
             array(
                 'name' => 'Relation Type',
+                'description' => 'Describes the relationship between the asset being describe by the PBCore document and any other asset',
             ),
             array(
                 'name' => 'Relation Identifier',
+                'description' => 'Identifier of the related asset',
             ),
             array(
                 'name' => 'Coverage',
+                'description' => 'Either the geographic location or the time period covered by the asset’s intellectual content',
             ),
             array(
                 'name' => 'Coverage Type',
+                'description' => 'The actual type of keywords that are being used by the corresponding Coverage element',
             ),
             array(
                 'name' => 'Audience Level',
@@ -248,11 +252,11 @@ class PBCore2Plugin extends Omeka_Plugin_AbstractPlugin
             ),
             array(
                 'name' => 'Relation Type',
-                'description' => '',
+                'description' => 'Describes the relation between the instantiation being described and another instantiation',
             ),
             array(
                 'name' => 'Relation Identifier',
-                'description' => '',
+                'description' => 'Used to provide a name, locator, accession, identification number or ID where the related item can be obtained or found',
             ),
             array(
                 'name' => 'Rights Summary',
