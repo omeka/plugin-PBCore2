@@ -1,7 +1,7 @@
 <?php
 class PBCore2Plugin extends Omeka_Plugin_AbstractPlugin
 {
-    protected $_hooks = array('install', 'uninstall');
+    protected $_hooks = array('install', 'uninstall', 'after_save_item');
 
     protected $_filters = array('action_contexts', 'response_contexts', 'admin_items_form_tabs', 'admin_files_form_tabs');
 
@@ -314,6 +314,39 @@ class PBCore2Plugin extends Omeka_Plugin_AbstractPlugin
         $pbCoreTab .= $this->_getFormJs('PBCore Instantiation', $this->_doubledFileElements);
         $tabs = array('PBCore Instantiation' => $pbCoreTab) + $tabs;
         return $tabs;
+    }
+
+    public function hookAfterSaveItem($args)
+    {
+        $this->copyPbToDc($args['record'], 'Title');
+        $this->copyPbToDc($args['record'], 'Creator');
+    }
+
+    public function copyPbToDc($record, $elementName)
+    {
+        $pbCoreTexts = $record->getElementTexts('PBCore', $elementName);
+        $dcTexts = $record->getElementTexts('Dublin Core', $elementName);
+        $dcElement = $record->getElement('Dublin Core', $elementName);
+
+        foreach ($pbCoreTexts as $index => $pbCoreText) {
+            if (isset($dcTexts[$index])) {
+                $textToSet = $dcTexts[$index];
+            } else {
+                $textToSet = new ElementText;
+                $textToSet->record_id = $record->id;
+                $textToSet->element_id = $dcElement->id;
+                $textToSet->record_type = get_class($record);
+            }
+            $textToSet->text = $pbCoreText->text;
+            $textToSet->html = $pbCoreText->html;
+            $textToSet->save();
+        }
+
+        if (count($dcTexts) > count($pbCoreTexts)) {
+            for ($i = count($pbCoreTexts); $i < count($dcTexts); $i++) {
+                $dcTexts[$i]->delete();
+            }
+        }
     }
 
     private function _getFormJs($elementSet, $elements)
