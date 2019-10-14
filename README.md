@@ -10,8 +10,8 @@ using the PBCore asset and instantiation metadata elements.
 See the [PBCore plugin's page in the Omeka Classic User Manual][manual]
 for documentation.
 
-[Omeka Team]: https://omeka.org
-[WGBH]: https://www.wgbh.org
+[omeka]: https://omeka.org
+[wgbh]: https://www.wgbh.org
 [neh]: https://www.neh.gov
 [pbcore]: http://pbcore.org
 [manual]: https://omeka.org/classic/docs/Plugins/PBCore/
